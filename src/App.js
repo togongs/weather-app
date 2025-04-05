@@ -11,7 +11,7 @@ function App() {
   const [city, setCity] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState("curr");
-
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
   const cities = ["Paris", "Barcelona", "Hawaii", "Seoul"];
 
   const getCurrentLocation = () => {
@@ -23,7 +23,7 @@ function App() {
   };
 
   const getWeatherByCurrentLocation = async (lat, lon) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     setLoading(true);
     try {
       let response = await fetch(url);
@@ -37,7 +37,7 @@ function App() {
   };
 
   const getWeatherByCity = async () => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     setLoading(true);
     try {
       let response = await fetch(url);
@@ -56,31 +56,30 @@ function App() {
     } else getCurrentLocation();
   }, [city]);
 
-  if (weather)
-    return (
-      <div className="container">
-        {loading ? (
-          <ClipLoader
-            color={"#f88c6b"}
-            loading={loading}
-            size={150}
-            aria-label="Loading Spinner"
-            data-testid="loader"
+  return (
+    <div className="container">
+      {loading ? (
+        <ClipLoader
+          color={"#f88c6b"}
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      ) : (
+        <>
+          <WeatherBox weather={weather} />
+          <WeatherButton
+            cities={cities}
+            setCity={setCity}
+            getCurrentLocation={getCurrentLocation}
+            selected={selected}
+            setSelected={setSelected}
           />
-        ) : (
-          <>
-            <WeatherBox weather={weather} />
-            <WeatherButton
-              cities={cities}
-              setCity={setCity}
-              getCurrentLocation={getCurrentLocation}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </>
-        )}
-      </div>
-    );
+        </>
+      )}
+    </div>
+  );
 }
 
 export default App;

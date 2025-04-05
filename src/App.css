@@ -17,6 +17,7 @@ body {
   padding: 16px;
   border-radius: 24px;
   background-color: azure;
+  text-align: center;
 }
 .btn-container {
   display: flex;
