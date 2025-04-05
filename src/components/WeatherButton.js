@@ -10,7 +10,7 @@ const WeatherButton = ({
   setSelected,
 }) => {
   return (
-    <div style={{ display: "flex", gap: 8 }}>
+    <div className="btn-container">
       <Button
         className={`btn ${selected === "curr" ? "clicked" : ""}`}
         onClick={() => {

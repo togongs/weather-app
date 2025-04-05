@@ -18,7 +18,10 @@ body {
   border-radius: 24px;
   background-color: azure;
 }
-
+.btn-container {
+  display: flex;
+  gap: 8px;
+}
 .btn.clicked {
   background-color: #fff;
   color: #333;
@@ -26,4 +29,10 @@ body {
 .btn:hover {
   background-color: #fff !important;
   color: #333 !important;
+}
+
+@media (width < 520px) {
+  .btn-container {
+    flex-direction: column;
+  }
 }
