@@ -6,8 +6,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 import WeatherBox from "./components/WeatherBox";
 import WeatherButton from "./components/WeatherButton";
 
-const apiKey = "316fbb5f9f7f2d0a0c43fe518ee64717";
-
 function App() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState(null);
@@ -25,7 +23,7 @@ function App() {
   };
 
   const getWeatherByCurrentLocation = async (lat, lon) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`;
     setLoading(true);
     try {
       let response = await fetch(url);
@@ -39,7 +37,7 @@ function App() {
   };
 
   const getWeatherByCity = async () => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}&units=metric`;
     setLoading(true);
     try {
       let response = await fetch(url);
