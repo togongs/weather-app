@@ -4,3 +4,26 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  gap: 12px;
+}
+.box {
+  border: 3px solid #fff;
+  padding: 16px;
+  border-radius: 24px;
+  background-color: azure;
+}
+
+.btn.clicked {
+  background-color: #fff;
+  color: #333;
+}
+.btn:hover {
+  background-color: #fff !important;
+  color: #333 !important;
+}
